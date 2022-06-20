@@ -3,7 +3,7 @@ Depth Charts Implementation
 
 ## Trying it out
 
-You'll need the .NET 6.0 SDK or later to run the sample. Check the version you have installed with:
+You'll need the .NET 6.0 SDK or later to run the code. Check the version you have installed with:
 
 ```shell
 dotnet --version
@@ -17,7 +17,6 @@ dotnet run
 
 ## Run Test
 
-You'll need the .NET 6.0 SDK or later to run the sample. Check the version you have installed with:
 
 ```shell
 cd Application.IntegrationTests
