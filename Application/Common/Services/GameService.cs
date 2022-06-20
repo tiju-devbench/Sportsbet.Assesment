@@ -21,18 +21,19 @@ namespace Application.Common.Services
             {
 
                 if (positionDepth < 0)
-                {
+                {                    
                     playerList.Add(playerId);
 
                 }
+                else if(positionDepth > playerList.Count())
+                {
+                    playerList.AddRange(Enumerable.Repeat(0, positionDepth.GetValueOrDefault(0) - playerList.Count()).ToList());
+                    playerList.Add(playerId);
+                    
+                }
                 else
                 {
-                    int playerAtPosition = playerList.ElementAtOrDefault(positionDepth.GetValueOrDefault());
                     playerList.Insert(positionDepth.GetValueOrDefault(), playerId);
-                    if (!String.IsNullOrEmpty(playerAtPosition.ToString()))
-                    {
-                        playerList.Append(playerAtPosition);
-                    }
                 }
             }
             else

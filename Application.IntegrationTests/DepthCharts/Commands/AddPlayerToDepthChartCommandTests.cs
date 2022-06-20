@@ -124,6 +124,37 @@ namespace Application.IntegrationTests.DepthCharts.Commands;
         Assert.That(chart.Chart.Count(), Is.EqualTo(2));
     }
 
-    
+    [Test]
+    public async Task AddPlayerToDepthChart_WitOutOfRangePosition_ShouldAddPlayerToPosition()
+    {
+        //Arrange
+        await CreateGameChart();
+        var bob = new Player(1, "Bob");
+        var alice = new Player(2, "Alice ");
+        var command1 = new AddPlayerToDepthChartCommand
+        {
+            PlayerId = bob.Id,
+            Position = "WR",
+            PositionDepth = 0
+        };
+        var command2 = new AddPlayerToDepthChartCommand
+        {
+            PlayerId = alice.Id,
+            Position = "WR",
+            PositionDepth = 6
+        };
+        //Act
+        await FluentActions.Invoking(() =>
+        SendAsync(command1)).Invoke();
+        await FluentActions.Invoking(() =>
+        SendAsync(command2)).Invoke();
+
+        var chart = await GetFullDepthChart();
+
+        //Assert
+        Assert.IsNotNull(chart);
+        Assert.That(chart.Chart?.GetValueOrDefault("WR"), Is.EqualTo(new List<int>() { 1, 0, 0, 0, 0, 0, 2 }));
+        Assert.That(chart.Chart.Count(), Is.EqualTo(1));
+    }
     
 }
