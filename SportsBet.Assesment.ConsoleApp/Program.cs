@@ -17,8 +17,6 @@ using IHost host = Host.CreateDefaultBuilder(args)
         services.AddApplicationServices()).Build();
 
 RunGame(host.Services);
-await host.RunAsync();
-
 
 async void RunGame(IServiceProvider services)
 {
