@@ -19,6 +19,10 @@ namespace Application.Common.Services
             var playerList = FindPlayersInPosition(position);
             if (playerList.Any())
             {
+                if(playerList.Any(x=> x == playerId))
+                {
+                    throw new Exception($"Player already exist in the position. PlayerId: {playerId}, Position: {position}.");
+                }
 
                 if (positionDepth < 0)
                 {                    
@@ -73,6 +77,7 @@ namespace Application.Common.Services
             if (playerList.Any())
             {
                 playerList.Remove(playerId);
+                return true;
             }
             return false;
         }

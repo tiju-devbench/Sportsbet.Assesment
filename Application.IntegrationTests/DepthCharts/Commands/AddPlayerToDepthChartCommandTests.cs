@@ -3,6 +3,7 @@ using Application.Common.Enums;
 using Application.DepthCharts.Commands.AddPlayerToDepthChart;
 using Application.DepthCharts.Commands.CreateDepthChart;
 using Application.DepthCharts.Queries.GetFullDepthChart;
+using Domain.Common.Exceptions;
 using Domain.Entities;
 using FluentValidation;
 
@@ -90,6 +91,44 @@ namespace Application.IntegrationTests.DepthCharts.Commands;
         //Assert
         Assert.IsNotNull(chart);
         Assert.That(chart.Chart?.GetValueOrDefault(position)?[positionDepth - 1], Is.EqualTo(playerId));
+    }
+
+    [Test]
+    [TestCase(1, "WR", 3)]
+    [TestCase(1, "QB", 10)]
+    [TestCase(1, "RB", 2)]
+    [TestCase(1, "TE", 4)]
+    [TestCase(1, "K", 5)]
+    [TestCase(1, "P", 6)]
+    [TestCase(1, "KR", 7)]
+    [TestCase(1, "PR", 8)]
+    [TestCase(1, "WR", 9)]
+    public async Task AddPlayerToDepthChart_TwiceWithValidCommand_ShouldThrowException(int playerId, string position, int positionDepth)
+    {
+        //Arrange
+        await CreateGameChart();
+
+        var command1 = new AddPlayerToDepthChartCommand
+        {
+            PlayerId = playerId,
+            Position = position,
+            PositionDepth = positionDepth
+        };
+        var command2 = new AddPlayerToDepthChartCommand
+        {
+            PlayerId = playerId,
+            Position = position,
+            PositionDepth = positionDepth
+        };
+
+        //Act
+        await FluentActions.Invoking(() =>
+        SendAsync(command1)).Invoke();
+        var ex = await FluentActions.Invoking(() =>
+        SendAsync(command1)).Should().ThrowAsync<DomainInvalidOperationException>(); ;
+
+        //Assert
+        ex.And.Message.Should().Contain("Player already exist in the position");
     }
 
     [Test]
