@@ -30,15 +30,25 @@ namespace Application.IntegrationTests.DepthCharts.Commands;
 
         }
 
-        [Test]
-        public async Task AddPlayerToDepthChart_WithInValidPositionId_ShouldThrowException()
+    [Test]
+    [TestCase("JKHWR")]
+    [TestCase("JKHQB")]
+    [TestCase("JKHRB")]
+    [TestCase("JKHTE")]
+    [TestCase("JKHK")]
+    [TestCase("JKHP")]
+    [TestCase("JKHKR")]
+    [TestCase("JKHPR")]
+    [TestCase("JK454HWR")]
+    [Parallelizable(ParallelScope.All)]
+    public async Task AddPlayerToDepthChart_WithInValidPositionId_ShouldThrowException(string position)
         {
             //Arrange
             await CreateGameChart();
             var command = new AddPlayerToDepthChartCommand
             {
                 PlayerId = 1,
-                Position = "GJJSdksj"
+                Position = position
             };
 
             //Act
@@ -51,16 +61,25 @@ namespace Application.IntegrationTests.DepthCharts.Commands;
         }
 
     [Test]
-    public async Task AddPlayerToDepthChart_WithValidCommand_ShouldAddPlayerToPosition()
+    [TestCase(1, "WR", 3)]
+    [TestCase(1, "QB", 10)]
+    [TestCase(1, "RB", 2)]
+    [TestCase(1, "TE", 4)]
+    [TestCase(1, "K", 5)]
+    [TestCase(1, "P", 6)]
+    [TestCase(1, "KR", 7)]
+    [TestCase(1, "PR", 8)]
+    [TestCase(1, "WR", 9)]
+    public async Task AddPlayerToDepthChart_WithValidCommand_ShouldAddPlayerToPosition(int playerId, string position, int positionDepth)
     {
         //Arrange
         await CreateGameChart();
 
         var command = new AddPlayerToDepthChartCommand
         {
-            PlayerId = 1,
-            Position = "WR",
-            PositionDepth = 3
+            PlayerId = playerId,
+            Position = position,
+            PositionDepth = positionDepth
         };
 
         //Act
@@ -70,7 +89,7 @@ namespace Application.IntegrationTests.DepthCharts.Commands;
 
         //Assert
         Assert.IsNotNull(chart);
-        Assert.That(chart.Chart?.GetValueOrDefault("WR")?[2], Is.EqualTo(1));
+        Assert.That(chart.Chart?.GetValueOrDefault(position)?[positionDepth - 1], Is.EqualTo(playerId));
     }
 
     [Test]
