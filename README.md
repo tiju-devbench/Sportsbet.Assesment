@@ -8,4 +8,9 @@ You'll need the .NET 6.0 SDK or later to run the sample. Check the version you h
 ```shell
 dotnet --version
 ```
+After checking out this repository or downloading a zip file of the source code, you can run the project with:
 
+```shell
+cd SportsBet.Assesment.ConsoleApp
+dotnet run
+```
