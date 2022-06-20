@@ -3,17 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32602.201
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{6209E66E-A893-4309-933D-A41E5B60CE33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{6209E66E-A893-4309-933D-A41E5B60CE33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{84102ACF-A296-4C64-804B-914CBD88381E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{84102ACF-A296-4C64-804B-914CBD88381E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9677E96E-9CB3-4A34-A057-F35A644C8D61}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2DFAB2CD-CABC-4D37-8C56-F21F5FE52FBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.IntegrationTests", "Application.IntegrationTests\Application.IntegrationTests.csproj", "{D415E27C-1EC7-447E-8338-0035198EF16F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.IntegrationTests", "Application.IntegrationTests\Application.IntegrationTests.csproj", "{D415E27C-1EC7-447E-8338-0035198EF16F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsBet.Assesment.ConsoleApp", "SportsBet.Assesment.ConsoleApp\SportsBet.Assesment.ConsoleApp.csproj", "{11221F18-273A-4420-9D15-1C873CEB111D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportsBet.Assesment.ConsoleApp", "SportsBet.Assesment.ConsoleApp\SportsBet.Assesment.ConsoleApp.csproj", "{11221F18-273A-4420-9D15-1C873CEB111D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B6509392-291C-40A8-9A87-55990CA32DA9}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
