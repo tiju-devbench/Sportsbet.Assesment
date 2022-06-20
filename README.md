@@ -14,3 +14,12 @@ After checking out this repository or downloading a zip file of the source code,
 cd SportsBet.Assesment.ConsoleApp
 dotnet run
 ```
+
+## Run Test
+
+You'll need the .NET 6.0 SDK or later to run the sample. Check the version you have installed with:
+
+```shell
+cd Application.IntegrationTests
+dotnet test
+```
